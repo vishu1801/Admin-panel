@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CCSS</title>
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-image: url('images/5.jpg'); background-size: cover;">
+	<nav class="navbar navbar-expand-md navbar-dark">
+		<a href="home.html" class="navbar-brand">ATTENDANCE SYSTEM</a>
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-items"><a href="#" class="nav-link">Home</a></li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Teacher</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="php/viewteacher.php">View Teachers</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="addteacher.html">Add Teacher</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="php/teacherallotted.php">Teachers Allotted</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="checkattendance.html">Check Attendance</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Student</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="viewstudent.html">View Students</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="addstudent.html">Add Student</a>
+				</div>
+			</li>
+			<li class="nav-items"><a href="php/logout.php" class="nav-link">Logout</a></li>
+		</ul>
+	</nav>
+</body>
+</html>
