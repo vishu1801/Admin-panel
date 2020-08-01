@@ -35,6 +35,7 @@
 }
 
 .form button{
+
 	width: 50%; 
 	border-style: outset;
 	padding: 14px 10px;
@@ -42,7 +43,7 @@
 	transition: 0.3s ease;
 }
 
-.form button:hover{
+button:hover{
 	background-color: springgreen;
 	border-color: black;
 }
