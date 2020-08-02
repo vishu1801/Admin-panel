@@ -41,30 +41,12 @@
 </head>
 <html>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a href="home.html" class="navbar-brand">ATTENDANCE SYSTEM</a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-items"><a href="../home.html" class="nav-link">Home</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Teacher</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="viewteacher.php">View Teachers</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../addteacher.html">Add Teacher</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="teacherallotted.php">Teachers Allotted</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../checkattendance.html">Check Attendance</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Student</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../viewstudent.html">View Students</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../addstudent.html">Add Student</a>
-                    </div>
-                </li>
+                <li class="nav-items"><a href="../view_teacher.html" class="nav-link">Teacher</a></li>
+                <li class="nav-items"><a href="../view_student.html" class="nav-link">Student</a></li>
                 <li class="nav-items"><a href="logout.php" class="nav-link">Logout</a></li>
             </ul>
         </nav>

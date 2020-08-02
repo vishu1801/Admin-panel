@@ -34,11 +34,21 @@
     }
 
     if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['mobile'])){
-        $result=mysqli_query($conn,"INSERT INTO `teachers`(`name`, `email`, `username`, `password`, `mobile`) VALUES ( '$name' , '$email' , '$username' , '$password' , '$mobile')");
+        $response=array();
+        $name=$_POST['name'];
+        $result=mysqli_query($conn,"SELECT * FROM `teachers` WHERE name='$name' ");
+        if(mysqli_num_rows($result)>0){
+            $response['message']="already teacher";
+        }else{
+            $result=mysqli_query($conn,"INSERT INTO `teachers`(`name`, `email`, `username`, `password`, `mobile`) VALUES ( '$name' , '$email' , '$username' , '$password' , '$mobile')");
+            $response['message']="success";
+        }
+        echo json_encode($response);
     }
 
     if(isset($_POST['deleteid'])){
         $result=mysqli_query($conn,"DELETE FROM teachers WHERE id =$deleteid");
+        $results=mysqli_query($conn,"DELETE FROM `teachersallotted` WHERE teacher_id=$deleteid");
     }
 
     if(isset($_POST['editid']) && isset($_POST['editid'])!=""){
