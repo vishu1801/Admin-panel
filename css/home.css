@@ -23,7 +23,7 @@
 	padding-top: 100px;
 }
 
-.form input[type="text"], input[type="password"],input[readonly]{
+.form input[type="text"], input[type="password"]{
 	width: 50%; 
 	border-style: outset;
 	padding: 14px 10px;

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset='utf-8'>
+    
+    <title>CCSS</title>
+
+    <link rel="icon" href="images/School Logo.png">
+
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    
+</head>
+<script>
+    $(document).ready(function(){
+        $("#date").datepicker({dateFormat:'dd/mm/yy',showAnim: 'drop'});
+    });
+</script>
+<html>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a href="home.html" class="navbar-brand">ATTENDANCE SYSTEM</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-items"><a href="home.html" class="nav-link">Home</a></li>
+                <li class="nav-items"><a href="view_teacher.html" class="nav-link">Teacher</a></li>
+                <li class="nav-items"><a href="allot_teacher.html" class="nav-link">Allocation</a></li>
+                <li class="nav-items"><a href="view_student.html" class="nav-link">Student</a></li>
+                <li class="nav-items"><a href="attendance.html" class="nav-link">Attendance</a></li>
+                <li class="nav-items"><a href="php/logout.php" class="nav-link">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="form-group my-auto">
+            <label class="mr-2 ml-5">Select Subject:</label>
+            <select id="subject" class="mr-5">
+              <option>--SUBJECTS--</option>
+              <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Science">Science</option>
+              <option value="Social Science">Social Science</option>
+              <option value="Computer">Computer</option>
+              <option value="Sanskrit">Sanskrit</option>
+              <option value="General Knowledge">General Knowledge</option>
+              <option value="Moral Science">Moral Science</option>
+            </select>
+            <label class="mr-2 ml-5">Select Class:</label>
+            <select id="classs" class="mr-5">
+              <option>--CLASSES--</option>
+              <option value="I">I</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="V">V</option>
+              <option value="VI">VI</option>
+              <option value="VII">VII</option>
+              <option value="VIII">VIII</option>
+              <option value="IX">IX</option>
+              <option value="X">X</option>
+            </select>
+            <label class="control-label mr-2 ml-5" for="date">Select Date:</label>
+            <input id="date" placeholder="DD/MM/YYY" type="text" style="width: 11%;" class="mr-5"/>
+            <button class="ml-5 my-2" onclick="readrecord()" style="width: 15%; padding: 10px 10px; border-radius: 24px; border-style: outset;">Submit</button>
+        </div>
+        <div id="records"></div>
+
+        <div class="modal" id="edit_modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Modify Attendance</h1>
+                        <button class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h4>Firstname:</h4>
+                            <input disabled="disabled" type="text" id="firstname" class="form-control my-2">
+                        </div>
+                        <hr></hr>
+                        <div class="form-group">
+                            <h4>Lastname:</h4>
+                            <input disabled="disabled" type="text" id="lastname" class="form-control">
+                        </div>
+                        <hr></hr>
+                        <div class="form-group ">
+                            <h4 style="float: left;" class="mr-2">Class:</h4>
+                            <input disabled="disabled" type="text" id="class" style="width: 12%;" class="my-1">
+                            <input disabled="disabled" type="text" id="subjects" style="float: right; width: 35%;" class="my-1">
+                            <h4 style="float: right;" class="mr-2">Subject:</h4>
+                        </div>
+                        <hr></hr>
+                        <div class="form-group">
+                            <h4>Date:</h4>
+                            <input disabled="disabled" type="text" id="dates" class="form-control">
+                        </div>
+                        <hr></hr>
+                        <div class="form-group">
+                            <h4 style="float: left;" class="mr-2">Attendance:</h4>
+                            <select id="attendance" class="my-2" style="width: 30%;">
+                                <option value="Absent">Absent</option>
+                                <option value="Present">Present</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning" data-dismiss="modal" onclick="modify()">Modify</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <input type="hidden" id="key">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <script>
+
+               
+                function readrecord() {
+                    var classs=$('#classs').val();
+                    var subject=$('#subject').val();
+                    var date=$('#date').val();
+
+                   
+                    if(classs=="--CLASSES--"){
+                        alert('Please enter the class');
+                    }else if(subject=="--SUBJECTS--"){
+                        alert('Please enter the subject');
+                    }else if(date==""){
+                        alert('Please enter the date');
+                    }else{
+                        $.post("php/attendance.php",{
+                            classs:classs,
+                            subject:subject,
+                            date:date,
+                        },function(data,status){
+                                if(data==""){
+                                    alert('Attendance not uploaded yet.');
+                                }else{
+                                $('#records').html(data);
+                            }
+                        });
+                    }
+                }
+
+                function change(id){
+                    $('#key').val(id);
+
+                    $.post("php/attendance.php",{
+                        id:id
+                    },function(data,status){
+                        var user=JSON.parse(data);
+                        $('#firstname').val(user.firstname);
+                        $('#lastname').val(user.lastname);
+                        $('#class').val(user.class);
+                        $('#subjects').val(user.subject);
+                        $('#dates').val(user.date);
+                        $('#attendance').val(user.attandance);
+
+                    });
+                    $('#edit_modal').modal("show");
+                }
+
+                function modify(){
+                    var key=$('#key').val();
+                    var attendance = $('#attendance').val();
+
+                    $.post("php/attendance.php",{
+                        key:key,
+                        attendance:attendance,
+                    },function(data,status){
+                        alert('Attendance Modified.');
+                        readrecord();
+                    });
+                }
+
+            </script>
+    </body>
+</html>

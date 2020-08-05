@@ -13,7 +13,7 @@
                             <th>Mobile</th>
                             <th>Modify</th>
                         </tr>';
-        $result=mysqli_query($conn,"SELECT *FROM teachers");
+        $result=mysqli_query($conn,"SELECT *FROM teachers ORDER BY name");
         if(mysqli_num_rows($result)>0){
             $count=0;
             while($rows=mysqli_fetch_assoc($result)){

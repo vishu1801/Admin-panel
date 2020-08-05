@@ -73,10 +73,18 @@
 
         $result=mysqli_query($conn,"SELECT * FROM `teachers` WHERE name='$teachername' ");
         if(mysqli_num_rows($result)>0){
-            $rows=mysqli_fetch_assoc($result);
-            $teacher_id=$rows['id'];
-            $result=mysqli_query($conn,"INSERT INTO `teachersallotted`(`teacher_id`, `name`, `class`, `subject`) VALUES ($teacher_id,'$teachername', '$classs','$subject') ");
-            $response['message']="success";
+            $results=mysqli_query($conn,"SELECT * FROM `teachersallotted` WHERE subject='$subject' AND class='$classs' ");
+            if(mysqli_num_rows($results)>0){
+                $row=mysqli_fetch_assoc($results);
+                $nam=$row['name'];
+                $response['message']="already";
+                $response['nam']=$nam;                
+            }else{
+                $rows=mysqli_fetch_assoc($result);
+                $teacher_id=$rows['id'];
+                $result=mysqli_query($conn,"INSERT INTO `teachersallotted`(`teacher_id`, `name`, `class`, `subject`) VALUES ($teacher_id,'$teachername', '$classs','$subject') ");
+                $response['message']="success";
+            }
 
         }else{
             $response['message']="not found";

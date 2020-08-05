@@ -15,7 +15,7 @@
                                 <th>Mobile</th>
                                 <th>Modify</th>
                             </tr>';
-            $result=mysqli_query($conn,"SELECT *FROM studentlist WHERE class='$classs' ");
+            $result=mysqli_query($conn,"SELECT *FROM studentlist WHERE class='$classs' ORDER BY firstname");
             if(mysqli_num_rows($result)>0){
                 $count=0;
                 while($rows=mysqli_fetch_assoc($result)){
