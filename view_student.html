@@ -158,12 +158,22 @@
             $(document).ready(function(){
                 document.getElementById("student").style.display="none";
             });
+
+            function clear(){
+                $('#firstname').val("");
+                $('#lastname').val("");
+                $('#classs').val("--CLASSES--");
+                $('#address').val("");
+                $('#phone').val("");
+            }
+
             function readrecord(){
                 var classs=$('#classes').val();
+                var read = "read";
                 $.ajax({
                     url:"php/view_student.php",
                     method:"POST",
-                    data:{classs:classs},
+                    data:{classs:classs,read:read},
                     success:function(data,status){
                         document.getElementById("student").style.display="block";
                         $('#records').html(data);
@@ -188,13 +198,19 @@
                         type:"POST",
                         data:{firstname:firstname,lastname:lastname,classs:classs,address:address,phone:phone},
                         success:function(data,status){
-                            alert('Record saved successfully.');
-                            $('#firstname').val("");
-                            $('#lastname').val("");
-                            $('#classs').val("--CLASSES--");
-                            $('#address').val("");
-                            $('#phone').val("");
-                            readrecord();
+                            var user=JSON.parse(data);
+                            if(user.message=="same firstname"){
+                                alert('There is already same name student in this class.');
+                                clear();
+                            }else if(user.message=="some internet issue"){
+                                alert('Please Try again later');
+                                clear();
+                            }else{
+                                alert('Record saved successfully.');
+                                clear();
+                                readrecord();
+                                
+                            }
                         }
                     });
                 }

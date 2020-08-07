@@ -1,7 +1,10 @@
 <?php
+session_start();
 error_reporting(0);
 $username = $_POST['username'];
 $password = $_POST['password'];
+$_SESSION['name']=$username;
+$duration=60;
 include 'connection.php';
 $conn = OpenCon();
 if(isset($_POST['login'])){
@@ -16,6 +19,10 @@ if(isset($_POST['login'])){
         }else{
             if($username==$rows['username']){
                 if($password==$rows['password']){
+                    $_SESSION['loggedin']=array(
+                        "start"=>time(),
+                        "duration"=>$duration
+                    );
                     header("location: ../home.html");;
                     exit(); 
                 }else{
